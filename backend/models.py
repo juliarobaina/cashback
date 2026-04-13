@@ -5,4 +5,4 @@ class Cashback(SQLModel, table=True):
     ip: str | None = Field(default=None, max_length = 50)
     tipoCliente: str = Field(max_length = 20)
     valor: float
-    cashback: float
+    cashback: float | None = Field(default=None)

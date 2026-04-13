@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Request
-from sqlmodel import SQLModel
+from sqlmodel import SQLModel, select
 from schemas import CashbackRequest, CashbackResponse
 from database import SessionDep
 from models import Cashback
+import services
+from typing import List
 
 router = APIRouter()
 
@@ -10,21 +12,14 @@ router = APIRouter()
 async def root():
    return {"message": "Fafa"}
 
-'''@router.get("/cashback", response_model=List[CashbackResponse])
-async def cashback(cashback:CashbackRequest):
-    return [
-        CashbackResponse(
-            tipoCliente = "VIP",
-            valor = 784.42,
-            cashback = 70.00
-        )
-    ]'''
 
 @router.post("/cashback", response_model=CashbackResponse, status_code=201)
 async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep):
+   
     db = Cashback.model_validate(cashback)
     ip = request.client.host
     db.ip = ip
+    db.cashback = services.calcular_cashback(cashback) 
 
     session.add(db)
     session.commit()
@@ -33,6 +28,10 @@ async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep
     return db
 
    
-@router.get("/historico")
-async def historico():
-    pass
+@router.get("/historico", response_model=List[CashbackResponse], status_code=200)
+async def historico(request:Request, session:SessionDep):
+    
+    statement = select(Cashback).where(Cashback.ip == request.client.host)
+    results = session.exec(statement)
+    return results
+
