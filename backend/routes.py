@@ -20,7 +20,8 @@ async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep
     ip = request.client.host
     db.ip = ip
     db.cashback = services.calcular_cashback(cashback) 
-
+    print(db.cashback)
+   
     session.add(db)
     session.commit()
     session.refresh(db)
