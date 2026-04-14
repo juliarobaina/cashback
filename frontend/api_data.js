@@ -28,14 +28,14 @@ function j(cashbackJson){
     tableTitle.innerText = "IP " + `${cashbackJson[0].ip}`
 }
 
+
 function cashback2(){ 
     const form = document.getElementById("form")
-
+    
     form.addEventListener("submit", async function(event){
         event.preventDefault()
 
         const data = new FormData(form)
-
    
         await fetch("http://127.0.0.1:8000/cashback",{
             method: "POST",

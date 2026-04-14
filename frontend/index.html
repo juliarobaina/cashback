@@ -6,27 +6,28 @@
         <title>Cashback</title>
     </head>
     <body>
-        <form id="form" method="POST">
-           <div>
-            <label for="tipoCliente">Tipo do Cliente</label>
-            <select name="tipoCliente" id="tipoCliente">
-                <option value="Regular">Regular</option>
-                <option value="VIP">VIP</option>
-            </select>
-           </div>
-           <div>
-                <label for="valorCompra">Valor da Compra</label>
-                <input type="text" name="valor" id="valorCompra">
-           </div>
-           <div>
-                <label for="cupomDesconto">Cupom de Desconto</label>
-                <input type="text" name="desconto" id="cupomDesconto">
-           </div>
-           <div>
-            <input type="submit" id="verCashback" value="Calcular Cashback">
-           </div>
-        </form>
-
+        <div style="position: sticky; border: 2px solid red; padding: 1rem; top: 0; background: white;">
+            <form id="form" method="POST">
+            <div>
+                <label for="tipoCliente">Tipo do Cliente</label>
+                <select name="tipoCliente" id="tipoCliente">
+                    <option value="Regular">Regular</option>
+                    <option value="VIP">VIP</option>
+                </select>
+            </div>
+            <div>
+                    <label for="valorCompra">Valor da Compra (obrigatório)</label>
+                    <input type="text" name="valor" id="valorCompra" required>
+            </div>
+            <div>
+                    <label for="cupomDesconto">Cupom de Desconto (opcional)</label>
+                    <input type="text" name="desconto" id="cupomDesconto">
+            </div>
+            <div>
+                <input type="submit" id="verCashback" value="Calcular Cashback">
+            </div>
+            </form>
+        </div>
         <table>
             <caption id="tableTitle"></caption>
              <thead>

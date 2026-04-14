@@ -15,13 +15,18 @@ async def root():
 
 @router.post("/cashback", response_model=CashbackResponse, status_code=201)
 async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep):
-   
-    db = Cashback.model_validate(cashback)
-    ip = request.client.host
-    db.ip = ip
-    db.cashback = services.calcular_cashback(cashback) 
-    print(db.cashback)
-   
+    #calcular cashback
+    cashbackUser = services.calcular_cashback(cashback)
+    
+    #validar cashback e ip com o modelo do banco  
+    #** "desempacotar" o dicionário 
+    db = Cashback.model_validate({
+        **cashback.model_dump(),
+        "cashback": cashbackUser,
+        "ip": request.client.host
+    })
+
+    #inserir os dados no banco
     session.add(db)
     session.commit()
     session.refresh(db)
