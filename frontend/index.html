@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cashback</title>
+    </head>
+    <body>
+        <form id="form" method="POST">
+           <div>
+            <label for="tipoCliente">Tipo do Cliente</label>
+            <select name="tipoCliente" id="tipoCliente">
+                <option value="Regular">Regular</option>
+                <option value="VIP">VIP</option>
+            </select>
+           </div>
+           <div>
+                <label for="valorCompra">Valor da Compra</label>
+                <input type="text" name="valor" id="valorCompra">
+           </div>
+           <div>
+                <label for="cupomDesconto">Cupom de Desconto</label>
+                <input type="text" name="desconto" id="cupomDesconto">
+           </div>
+           <div>
+            <input type="submit" id="verCashback" value="Calcular Cashback">
+           </div>
+        </form>
+
+        <table>
+            <caption id="tableTitle"></caption>
+             <thead>
+                
+                <th>Tipo do Cliente</th>
+                <th>Valor da Compra</th>
+                <th>Cupom de Desconto</th>
+            </thead>
+            <tbody id="history_table">
+               
+            </tbody>
+        </table>
+        <script src="api_data.js"></script>
+    </body>
+</html>

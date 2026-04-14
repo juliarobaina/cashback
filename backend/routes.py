@@ -34,5 +34,6 @@ async def historico(request:Request, session:SessionDep):
     
     statement = select(Cashback).where(Cashback.ip == request.client.host)
     results = session.exec(statement)
-    return results
+    historico = results.all()
+    return historico
 
