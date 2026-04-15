@@ -3,46 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+
         <title>Cashback</title>
+
     </head>
     <body>
-        <div style="position: sticky; border: 2px solid red; padding: 1rem; top: 0; background: white;">
-            <form id="form" method="POST">
-            <div>
-                <label for="tipoCliente">Tipo do Cliente</label>
-                <select name="tipoCliente" id="tipoCliente">
-                    <option value="Regular">Regular</option>
-                    <option value="VIP">VIP</option>
-                </select>
+        <div class="container mt-5">
+            <h1 class="mb-4 fw-bold">Cashback</h1>
+
+            <div class="col-12">
+                <div class="s-form shadow-sm mb-5">
+                    <form id="form" method="POST" class="row g-3 align-items-end">
+                        
+                        <div class="col-12 col-xl-3">
+                            <label for="tipoCliente" class="form-label fw-bold">Tipo do Cliente</label>
+                            <div class="input-wrapper">
+                                <select name="tipoCliente" id="tipoCliente" class="form-select border-dark">
+                                    <option value="Regular">Regular</option>
+                                    <option value="VIP">VIP</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-xl-4">
+                            <label for="valorCompra" class="form-label fw-bold">Valor da Compra (obrigatório)</label>
+                            <div class="input-wrapper">
+                                <input type="text" name="valor" id="valorCompra" class="form-control border-dark" required placeholder="Digite o valor da compra">
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-xl-3">
+                            <label for="cupomDesconto" class="form-label fw-bold">Cupom de Desconto (opcional)</label>
+                            <div class="input-wrapper">
+                                <input type="text" name="desconto" id="cupomDesconto" class="form-control border-dark" placeholder="Digite o valor do cupom">
+                                <p id="msg"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-xl-2">
+                            <label class="form-label d-none d-xl-block">&nbsp;</label>
+                            <div class="input-wrapper">
+                                <button type="submit" id="verCashback" class="btn btn-custom w-100">Calcular</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div>
-                    <label for="valorCompra">Valor da Compra (obrigatório)</label>
-                    <input type="text" name="valor" id="valorCompra" required placeholder="Digite o valor da compra">
-                    <p id="msg"></p>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-custom text-center align-middle caption-top">
+                    <caption id="tableTitle" class="fw-bold text-dark fs-5 mb-2"></caption>
+                    <thead>
+                        <tr>
+                            <th>Tipo do Cliente</th>
+                            <th>Valor da Compra</th>
+                            <th>Valor com Cupom</th>
+                            <th>Cupom</th>
+                            <th>Cashback</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history_table">
+                        
+                    </tbody>
+                </table>
             </div>
-            <div>
-                    <label for="cupomDesconto">Cupom de Desconto (opcional)</label>
-                    <input type="text" name="desconto" id="cupomDesconto" placeholder="Digite o valor do cupom para desconto">
-            </div>
-            <div>
-                <input type="submit" id="verCashback" value="Calcular Cashback">
-            </div>
-            </form>
         </div>
-        <table>
-            <caption id="tableTitle"></caption>
-             <thead>
-                
-                <th>Tipo do Cliente</th>
-                <th>Valor da Compra</th>
-                <th>Valor da Compra Com o Cupom</th>
-                <th>Cupom</th>
-                <th>Cashback</th>
-            </thead>
-            <tbody id="history_table">
-               
-            </tbody>
-        </table>
+        
         <script src="api_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>
 </html>

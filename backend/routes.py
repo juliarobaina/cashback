@@ -8,10 +8,6 @@ from typing import List
 
 router = APIRouter()
 
-@router.get("/")
-async def root():
-   return {"message": "Fafa"}
-
 
 @router.post("/cashback", response_model=CashbackResponse, status_code=201)
 async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep):

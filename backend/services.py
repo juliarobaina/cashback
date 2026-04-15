@@ -10,16 +10,16 @@ def calcular_desconto(cashback:CashbackRequest) -> Decimal:
     
 def calcular_cashback(cashback:CashbackRequest):
     valorCD = calcular_desconto(cashback)
-    valo_cashback = valorCD * Decimal(0.05)
+    valor_cashback = valorCD * Decimal(0.05)
 
     if "VIP" in cashback.tipoCliente:
-        valo_cashback += valo_cashback * Decimal(0.10)
+        valor_cashback += valor_cashback * Decimal(0.10)
 
     if valorCD > 500:
-        valo_cashback *= 2
+        valor_cashback *= 2
 
     cashback.valor = Decimal(cashback.valor).quantize(Decimal('.01'), rounding=ROUND_DOWN)
-    return Decimal(valo_cashback).quantize(Decimal('.01'), rounding=ROUND_DOWN)
+    return Decimal(valor_cashback).quantize(Decimal('.01'), rounding=ROUND_DOWN)
 
 
 

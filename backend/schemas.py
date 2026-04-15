@@ -15,7 +15,7 @@ class CashbackResponse(SQLModel):
     id: int
     ip: str
     tipoCliente: str
-    valor: Decimal
-    valorDescontado: Decimal
-    desconto: int
-    cashback: Decimal
+    valor: Decimal = Field(default=50, description="Valor da compra")
+    valorDescontado: Decimal = Field(default=45, description="Valor da compra com o desconto")
+    desconto: int = Field(default=10, description="Valor do cupom")
+    cashback: Decimal = Field(default=2.25, description="Valor do cashback")

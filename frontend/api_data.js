@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    cashback()     
-    cashback2()
-    maskDesconto()
-    maskValor()
+    historico()     
+    cashback()
+    mascara_desconto()
+    mascara_valor()
 })
 
-async function cashback(){
+async function historico(){
     const cashback = await fetch("http://127.0.0.1:8000/historico")
     const cashbackJson = await cashback.json()
-    j(cashbackJson)
+    get_historico(cashbackJson)
 
    
 }
 
-function j(cashbackJson){
- let rows = ""
+function get_historico(cashbackJson){
+    let rows = ""
     const table = document.getElementById("history_table")
     cashbackJson.forEach(item => {
         rows += `<tr>
@@ -33,7 +33,7 @@ function j(cashbackJson){
 }
 
 
-function cashback2(){ 
+function cashback(){ 
     const form = document.getElementById("form")
     
     form.addEventListener("submit", async function(event){
@@ -48,7 +48,6 @@ function cashback2(){
                 .replace(/\./g, "")   // remove pontos
                 .replace(",", ".")    // troca vírgula por ponto
         }
-        console.log(JSON.stringify(obj))
 
         if(!obj.desconto){
             obj.desconto = 0
@@ -63,7 +62,7 @@ function cashback2(){
         })
        
         form.reset()
-        await cashback()
+        await historico()
 
     })
     
@@ -71,7 +70,7 @@ function cashback2(){
 }
 
 
-function maskDesconto() {
+function mascara_desconto() {
     const input = document.getElementById("cupomDesconto")
     
     input.addEventListener("input", function(){
@@ -83,7 +82,6 @@ function maskDesconto() {
         }
 
         if (valor !== "" && parseInt(valor) > 100) {
-            //input.value = ""
             id.innerText = "Digite números entre 0 e 100"
         }else{
             id.innerText = ""
@@ -91,7 +89,7 @@ function maskDesconto() {
     })
 }
 
-function maskValor() {
+function mascara_valor() {
     const input = document.getElementById("valorCompra")
 
     input.addEventListener("input", function () {
@@ -104,14 +102,12 @@ function maskValor() {
         // limita até 12 digitos
         if (somenteNumeros.length > 12) {
             input.value = valor.slice(0, -1)
-           //msg.innerText = "Valor máximo"
             return
         }
 
         // se tiver letras ou símbolos inválidos
         if (!/^[0-9.,]*$/.test(valor)) {
             input.value = valor.slice(0, -1)
-           // msg.innerText = "Digite apenas números"
             return
         }
 
@@ -125,6 +121,5 @@ function maskValor() {
         numero = numero.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
         input.value = numero
-       // msg.innerText = ""
     })
 }
