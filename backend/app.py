@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 import routes
 from fastapi.middleware.cors import CORSMiddleware
+from settings import host
 
 
-app = FastAPI()
+app = FastAPI(title="Cashback")
 
 origins = [
     "*"
@@ -22,4 +23,4 @@ app.include_router(routes.router)
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host='0.0.0.0', port=10000)
+    uvicorn.run(app, host=f"{host.HOST_IP}", port=host.PORT)

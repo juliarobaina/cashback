@@ -9,7 +9,11 @@ class Settings(BaseSettings):
     DB_PORT: int
     DB_NAME: str
 
+    HOST_IP: str
+    PORT: int
+
     model_config = SettingsConfigDict(env_file=".env")
 
 
 db_settings = Settings()
+host = Settings()

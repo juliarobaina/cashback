@@ -6,7 +6,7 @@ from models import Cashback
 import services
 from typing import List
 
-router = APIRouter()
+router = APIRouter(tags=["Programa de Cashback"])
 
 
 @router.post("/cashback", response_model=CashbackResponse, status_code=201)
