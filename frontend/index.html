@@ -17,11 +17,12 @@
             </div>
             <div>
                     <label for="valorCompra">Valor da Compra (obrigatório)</label>
-                    <input type="text" name="valor" id="valorCompra" required>
+                    <input type="text" name="valor" id="valorCompra" required placeholder="Digite o valor da compra">
+                    <p id="msg"></p>
             </div>
             <div>
                     <label for="cupomDesconto">Cupom de Desconto (opcional)</label>
-                    <input type="text" name="desconto" id="cupomDesconto">
+                    <input type="text" name="desconto" id="cupomDesconto" placeholder="Digite o valor do cupom para desconto">
             </div>
             <div>
                 <input type="submit" id="verCashback" value="Calcular Cashback">
@@ -34,7 +35,9 @@
                 
                 <th>Tipo do Cliente</th>
                 <th>Valor da Compra</th>
-                <th>Cupom de Desconto</th>
+                <th>Valor da Compra Com o Cupom</th>
+                <th>Cupom</th>
+                <th>Cashback</th>
             </thead>
             <tbody id="history_table">
                

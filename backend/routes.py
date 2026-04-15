@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, HTTPException
 from sqlmodel import SQLModel, select
 from schemas import CashbackRequest, CashbackResponse
 from database import SessionDep
@@ -15,17 +15,21 @@ async def root():
 
 @router.post("/cashback", response_model=CashbackResponse, status_code=201)
 async def cashback(request:Request, cashback:CashbackRequest, session:SessionDep):
-    #calcular cashback
-    cashbackUser = services.calcular_cashback(cashback)
     
+    valorTotal = cashback.valor
+    #calcular cashback
+    
+    cashbackUser = services.calcular_cashback(cashback)
+   
     #validar cashback e ip com o modelo do banco  
     #** "desempacotar" o dicionário 
     db = Cashback.model_validate({
         **cashback.model_dump(),
         "cashback": cashbackUser,
-        "ip": request.client.host
+        "ip": request.client.host,
+        "valorDescontado": valorTotal
     })
-
+    
     #inserir os dados no banco
     session.add(db)
     session.commit()
@@ -40,5 +44,6 @@ async def historico(request:Request, session:SessionDep):
     statement = select(Cashback).where(Cashback.ip == request.client.host)
     results = session.exec(statement)
     historico = results.all()
+    
     return historico
 
