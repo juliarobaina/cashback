@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 async function historico(){
-    const cashback = await fetch("http://127.0.0.1:8000/historico")
+    const cashback = await fetch("https://cashback-0j64.onrender.com/historico")
     const cashbackJson = await cashback.json()
     get_historico(cashbackJson)
 
@@ -53,7 +53,7 @@ function cashback(){
             obj.desconto = 0
         }
 
-        await fetch("http://127.0.0.1:8000/cashback",{
+        await fetch("https://cashback-0j64.onrender.com/cashback",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
