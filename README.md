@@ -1,7 +1,7 @@
 # 💸 Cashback API + Frontend
 
-![Python](https://img.shields.io/badge/python-3.14-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-backend-green)
+![Python](https://img.shields.io/badge/python-3.14-red)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-blue)
 ![Frontend](https://img.shields.io/badge/frontend-JS%20puro-yellow)
 ![Status](https://img.shields.io/badge/status-finalizado-success)
 
@@ -36,19 +36,20 @@ A aplicação foi construída seguindo uma separação clara de responsabilidade
 
 ```text
 backend/
-├── app.py          # Inicialização da aplicação
-├── routes.py       # Controllers (endpoints)
-├── services.py     # Regras de negócio (cashback)
-├── models.py       # Modelo da tabela (SQLModel)
-├── schemas.py      # Validação e modelos (SQLModel)
-├── database.py     # Conexão com banco
-├── settings.py     # Configuração via .env
-└── requirements.txt
+├── app.py           # Inicialização da aplicação
+├── routes.py        # Controllers (endpoints)
+├── services.py      # Regras de negócio (cashback)
+├── models.py        # Modelo da tabela (SQLModel)
+├── schemas.py       # Validação e modelos (SQLModel)
+├── database.py      # Conexão com banco
+├── settings.py      # Configuração via .env
+├── requirements.txt # Dependências
+└── .env.example     # Arquivo de exemplo para o .env com variáveis de ambiente
 
 frontend/
 ├── index.html
 ├── index.css
-└── api_data.js     # Consumo da API + lógica JS
+└── api_data.js       # Consumo da API + lógica JS
 
 calcular_cashback.py  # Execução via terminal do cálculo do cashback
 ```
@@ -82,7 +83,6 @@ calcular_cashback.py  # Execução via terminal do cálculo do cashback
     </ul>
   </li>
 </ul>
-, , 
 
 ---
 
@@ -112,10 +112,10 @@ Isso garante:
 
 ## 🔐 Variáveis de Ambiente
 
-No diretório backend está o arquivo .env.example com as variáveis de ambiente que são usadas no projeto.
-<p>backend/.env.example</p>
+O arquivo .env.example é um arquivo de exemplo com as variáveis de ambiente que o arquivo .env deve ter:
 
-### Example MySQL
+```text
+# Example MySQL
 DB_TYPE=mysql
 DB_DRIVER=pymysql
 DB_USER=root
@@ -124,26 +124,25 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=your_database
 
-
-### Example Settings Uvicorn
+# Example Settings Uvicorn
 HOST_IP=127.0.0.1
 PORT=8000
-
-Essas variáveis são carregadas via settings.py, evitando hardcode e deixando o projeto mais seguro e profissional.
+```
+Essas variáveis são carregadas via settings.py, evitando hardcode e deixando o projeto mais seguro.
 
 ---
 
 ## 🧪 Execução Local
 ### Backend
-<p>🔧 Instalar dependências</p>p>
-pip install -r requirements.txt
+<p>🔧 Instalar dependências</p>
+
+`pip install -r requirements.txt`
 <p>▶️ 2. Executar a API</p>
-uvicorn app:app --reload
-ou
-python app.py
+
+`uvicorn app:app --reload` ou `python app.py`
 
 ### Frontend
-abrir index.html
+Abrir index.html
 
 ---
 
@@ -151,10 +150,10 @@ abrir index.html
 
 O frontend:
 
-Consome a API via fetch
-Aplica validações em JavaScript
-Formata valores no padrão brasileiro
-Converte valores para o formato aceito pelo backend
+- Consome a API via fetch
+- Aplica validações em JavaScript
+- Formata valores no padrão brasileiro
+- Converte valores para o formato aceito pelo backend
 
 ---
 
@@ -162,21 +161,23 @@ Converte valores para o formato aceito pelo backend
 
 O arquivo abaixo contém somente o algoritmo para o cálculo do cashback:
 
-▶️ Executar:
-python calcular_cashback.py
+<p>▶️ Executar:</p>
+
+`python calcular_cashback.py`
 
 ---
 
 ## 🗄️ Banco de Dados
-Tipo: MySQL
-Hospedagem: Railway
-Integração via variáveis de ambiente
+- Tipo: MySQL
+- Hospedagem: Railway
+- Integração via variáveis de ambiente
 
 Uso de SQLModel permite abstração e flexibilidade para troca de banco.
+
 ---
 ## 📌 Destaques
-Separação clara de camadas
-Uso de variáveis de ambiente
-Máscara e tratamento de valores monetários
-Deploy completo (frontend + backend + banco)
+- Separação clara de camadas
+- Uso de variáveis de ambiente
+- Máscara e tratamento de valores monetários
+- Deploy completo (frontend + backend + banco)
 
